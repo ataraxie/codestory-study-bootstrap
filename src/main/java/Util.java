@@ -16,7 +16,7 @@ public class Util {
 		if (destination.exists()) {
 			Gson gson = new Gson();
 			BufferedReader br = new BufferedReader(new FileReader(destination));
-			logs = gson.fromJson(br, ArrayList<JsonLog>.class);
+			logs = gson.fromJson(br, new TypeToken<List<JsonLog>>(){}.getType());
 			// logs.add(log);
 			// serialize "logs" again
 		}
