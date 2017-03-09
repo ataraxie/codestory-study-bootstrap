@@ -1,11 +1,13 @@
+import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 public class MainClass {
 
 	public static void main(String[] args) throws Exception {
-		String json = "[{name: 'Nick'}, {name: 'Felix'}]";
-		List<Person> entities = Util.getEntities(json);
-		System.out.println("Result entities: " + entities.toString());
+		Date timestamp = new Date();
+		String msg = "Error: something went wrong";
+		Util.log(new File("output.log"), new JsonLog(timestamp, msg));
 
 		String version1 = "3.1.1";
 		String version2 = "3.2";
