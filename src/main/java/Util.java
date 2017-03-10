@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -23,20 +24,13 @@ public class Util {
 	}
 
 	public static int compareVersions(String version1, String version2) {
-		String[] levels1 = version1.split("\\.");
-		String[] levels2 = version2.split("\\.");
+		//  View code story: http://nicholascbradley.com:4321/codestory/012cd5e8d
+		DefaultArtifactVersion mvnVersion1 = new DefaultArtifactVersion(version1);
+		DefaultArtifactVersion mvnVersion2 = new DefaultArtifactVersion(version2);
 
-		int length = Math.max(levels1.length, levels2.length);
-		for (int i = 0; i < length; i++){
-			Integer v1 = i < levels1.length ? Integer.parseInt(levels1[i]) : 0;
-			Integer v2 = i < levels2.length ? Integer.parseInt(levels2[i]) : 0;
-			int compare = v1.compareTo(v2);
-			if (compare != 0){
-				return compare;
-			}
-		}
+		DefaultArtifactVersion version = new DefaultArtifactVersion("1.11");
 
-		return 0;
+		return mvnVersion1.compareTo(mvnVersion2);
 	}
 
 }
